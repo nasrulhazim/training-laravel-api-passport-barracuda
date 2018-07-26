@@ -29,7 +29,7 @@ class LoginController extends Controller
         $token = $tokenResult->token;
         $token->save();
 
-        return response()->json([
+        return response()->api([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => \Carbon\Carbon::parse(

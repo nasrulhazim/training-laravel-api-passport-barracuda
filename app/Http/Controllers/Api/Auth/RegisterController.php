@@ -30,13 +30,18 @@ class RegisterController extends Controller
         $token = $tokenResult->token;
         $token->save();
 
-        return response()->json([
-        	'user' => $user,
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => \Carbon\Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
-        ]);
+        return response()->api(
+        	[
+	        	'user' => $user,
+	            'access_token' => $tokenResult->accessToken,
+	            'token_type' => 'Bearer',
+	            'expires_at' => \Carbon\Carbon::parse(
+	                $tokenResult->token->expires_at
+	            )->toDateTimeString()
+	        ], 
+	        'You have successfully registered.', 
+	        true, 
+	        201
+	    );
     }
 }

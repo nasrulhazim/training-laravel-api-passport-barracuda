@@ -11,8 +11,6 @@ class LogoutController extends Controller
     {
     	$request->user()->token()->revoke();
     	
-        return response()->json([
-            'message' => 'Successfully logged out'
-        ]);
+        return response()->api(null, 'Successfully logged out');
     }
 }
