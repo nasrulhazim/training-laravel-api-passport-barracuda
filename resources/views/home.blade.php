@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+@push('scripts')
+    <script>
+        jQuery(document).ready(function($) {
+            axios.get('api/user')
+                .then(function(response){
+                    console.log(response);
+                })
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

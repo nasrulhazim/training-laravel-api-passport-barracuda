@@ -38,6 +38,22 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+let header = document.head.querySelector('meta[name="accept-header"]');
+
+if (header) {
+    window.axios.defaults.headers.common['Accept'] = header.content;
+} else {
+    console.error('No Accept Header Set');
+}
+
+let version = document.head.querySelector('meta[name="version"]');
+
+if (version) {
+    window.axios.defaults.headers.common['Version'] = version.content;
+} else {
+    console.error('No API Version Set');
+}
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
