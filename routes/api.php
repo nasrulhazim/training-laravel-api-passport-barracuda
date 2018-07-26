@@ -15,4 +15,15 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+})->name('api.user');
+
+Route::post('login', 'Api\Auth\LoginController')
+	->name('api.login');
+
+Route::post('logout', 'Api\Auth\LogoutController')
+	->middleware('auth:api')
+	->name('api.logout');
+
+Route::post('register', 'Api\Auth\RegisterController')
+	->name('api.register');
+
